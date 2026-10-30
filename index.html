@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجري - المتجر الإلكتروني الشامل للدفع عند الاستلام</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            500: '#e11d48',
+                            600: '#e11d48',
+                            700: '#be123c',
+                        },
+                        accent: {
+                            500: '#10b981',
+                            600: '#059669',
+                        }
+                    },
+                    fontFamily: {
+                        cairo: ['Cairo', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <!-- Top Announcement Bar -->
+    <div class="bg-slate-900 text-white text-xs sm:text-sm py-2 px-4 text-center font-bold flex justify-center items-center gap-2 shadow-md">
+        <span class="bg-red-600 text-white text-[10px] sm:text-xs px-2 py-0.5 rounded-full uppercase animate-pulse">عرض حصري</span>
+        <span>🔥 الشحن مجاني والدفع عند الاستلام لجميع الولايات والمدن!</span>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center gap-4">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center gap-2">
+                <div class="bg-brand-600 text-white p-2 rounded-xl font-black text-xl flex items-center justify-center w-10 h-10 shadow-sm">
+                    <i class="fa-solid fa-store"></i>
+                </div>
+                <span class="font-black text-xl text-slate-900 tracking-tight">متجري<span class="text-brand-600">.ستور</span></span>
+            </a>
+
+            <!-- Search Bar (Desktop) -->
+            <div class="hidden md:flex flex-1 max-w-md relative">
+                <input type="text" placeholder="عن ماذا تبحث اليوم؟" class="w-full bg-slate-100 border border-slate-200 rounded-xl pr-10 pl-4 py-2 text-sm text-slate-800 focus:outline-none focus:bg-white focus:ring-2 focus:ring-brand-600">
+                <i class="fa-solid fa-magnifying-glass absolute right-3.5 top-3 text-slate-400 text-sm"></i>
+            </div>
+
+            <!-- Cart Status Button -->
+            <button onclick="scrollToProducts()" class="bg-slate-100 hover:bg-slate-200 text-slate-800 px-4 py-2 rounded-xl text-sm font-bold transition flex items-center gap-2">
+                <i class="fa-solid fa-bag-shopping text-brand-600 text-base"></i>
+                <span class="hidden sm:inline">تسوق المنتجات</span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Banner / Promos -->
+    <section class="max-w-7xl mx-auto px-4 pt-6">
+        <div class="bg-gradient-to-r from-slate-900 to-slate-800 rounded-3xl p-6 sm:p-10 text-white shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-4 max-w-xl z-10 text-center md:text-right">
+                <span class="bg-brand-600/30 border border-brand-500/30 text-brand-100 text-xs font-bold px-3 py-1 rounded-full inline-block">تخفيضات الكبرى 2026</span>
+                <h1 class="text-2xl sm:text-4xl font-black leading-tight">أفضل المنتجات والأجهزة الإلكترونية مع خدمة الدفع عند الاستلام</h1>
+                <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">اطلب الآن واستلم طردك عند باب منزلك، عاين المنتج ثم ادفع بنقودك في جميع الولايات والمدن.</p>
+                <button onclick="scrollToProducts()" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition inline-flex items-center gap-2">
+                    <span>تصفح العروض الحالية</span>
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+            </div>
+            <div class="relative z-10 w-full md:w-1/3 flex justify-center">
+                <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80" alt="عرض خاص" class="rounded-2xl shadow-2xl object-cover h-48 sm:h-64 w-full max-w-xs border-2 border-slate-700">
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Features Grid -->
+    <section class="max-w-7xl mx-auto px-4 py-8">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white p-4 rounded-2xl border border-slate-200/60 shadow-xs flex items-center gap-3">
+                <div class="w-10 h-10 bg-brand-50 text-brand-600 rounded-xl flex items-center justify-center text-lg shrink-0">
+                    <i class="fa-solid fa-truck-fast"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs sm:text-sm text-slate-900">توصيل سريع</h4>
+                    <p class="text-[11px] text-slate-500">خلال 24-48 ساعة</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl border border-slate-200/60 shadow-xs flex items-center gap-3">
+                <div class="w-10 h-10 bg-brand-50 text-brand-600 rounded-xl flex items-center justify-center text-lg shrink-0">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs sm:text-sm text-slate-900">الدفع عند الاستلام</h4>
+                    <p class="text-[11px] text-slate-500">ادفع فقط عند المعاينة</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl border border-slate-200/60 shadow-xs flex items-center gap-3">
+                <div class="w-10 h-10 bg-brand-50 text-brand-600 rounded-xl flex items-center justify-center text-lg shrink-0">
+                    <i class="fa-solid fa-shield-halved"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs sm:text-sm text-slate-900">ضمان الجودة</h4>
+                    <p class="text-[11px] text-slate-500">استبدال سهل خلال 7 أيام</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-4 rounded-2xl border border-slate-200/60 shadow-xs flex items-center gap-3">
+                <div class="w-10 h-10 bg-brand-50 text-brand-600 rounded-xl flex items-center justify-center text-lg shrink-0">
+                    <i class="fa-solid fa-headset"></i>
+                </div>
+                <div>
+                    <h4 class="font-bold text-xs sm:text-sm text-slate-900">خدمة العملاء</h4>
+                    <p class="text-[11px] text-slate-500">دعم متواصل للإجابة</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Store Catalog Section -->
+    <main id="products-section" class="max-w-7xl mx-auto px-4 py-6">
+        <div class="flex justify-between items-end mb-8 border-b border-slate-200 pb-4">
+            <div>
+                <span class="text-xs font-bold text-brand-600 uppercase tracking-wider block">تشكيلة مختارة</span>
+                <h2 class="text-2xl sm:text-3xl font-black text-slate-900">المنتجات الأكثر طلباً 🔥</h2>
+            </div>
+        </div>
+
+        <!-- Product Cards Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            
+            <!-- Product Card 1 -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="relative bg-slate-100 aspect-square">
+                        <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=500&q=80" alt="سماعات لاسلكية" class="w-full h-full object-cover">
+                        <span class="absolute top-3 right-3 bg-red-600 text-white font-bold text-xs px-2.5 py-1 rounded-full shadow-md">خصم 35%</span>
+                    </div>
+                    <div class="p-4 space-y-2">
+                        <div class="flex items-center gap-1 text-amber-400 text-xs">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            <span class="text-slate-400 font-bold mr-1">(128)</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-base">سماعات رأس لاسلكية بعزل ضوضاء ممتاز</h3>
+                        <p class="text-xs text-slate-500 line-clamp-2">صوت نقي باص قوي وبطارية يدوم شحنها لـ 30 ساعة متواصلة مع ميكروفون مكالمات صافي.</p>
+                    </div>
+                </div>
+                <div class="p-4 pt-0 space-y-3">
+                    <div class="flex items-baseline justify-between border-t border-slate-100 pt-3">
+                        <span class="text-xs text-slate-400 font-bold">السعر الترويجي:</span>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-xl font-black text-brand-600">4,900 د.ج</span>
+                            <span class="text-xs text-slate-400 line-through font-semibold">7,500 د.ج</span>
+                        </div>
+                    </div>
+                    <button onclick="openCheckoutModal('سماعات رأس لاسلكية بعزل ضوضاء ممتاز', 4900, 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=500&q=80')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-cart-arrow-down"></i>
+                        <span>اطلب الآن (COD)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Card 2 -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="relative bg-slate-100 aspect-square">
+                        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80" alt="ساعة ذكية" class="w-full h-full object-cover">
+                        <span class="absolute top-3 right-3 bg-red-600 text-white font-bold text-xs px-2.5 py-1 rounded-full shadow-md">الأكثر مبيعاً</span>
+                    </div>
+                    <div class="p-4 space-y-2">
+                        <div class="flex items-center gap-1 text-amber-400 text-xs">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            <span class="text-slate-400 font-bold mr-1">(210)</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-base">ساعة ذكية رياضية بشاشة AMOLED</h3>
+                        <p class="text-xs text-slate-500 line-clamp-2">تتبع النشاط الرياضي، قياس نبضات القلب، مقاومة للماء مع استقبال جميع الإشعارات والمكالمات.</p>
+                    </div>
+                </div>
+                <div class="p-4 pt-0 space-y-3">
+                    <div class="flex items-baseline justify-between border-t border-slate-100 pt-3">
+                        <span class="text-xs text-slate-400 font-bold">السعر الترويجي:</span>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-xl font-black text-brand-600">6,500 د.ج</span>
+                            <span class="text-xs text-slate-400 line-through font-semibold">9,200 د.ج</span>
+                        </div>
+                    </div>
+                    <button onclick="openCheckoutModal('ساعة ذكية رياضية بشاشة AMOLED', 6500, 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=500&q=80')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-cart-arrow-down"></i>
+                        <span>اطلب الآن (COD)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Card 3 -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="relative bg-slate-100 aspect-square">
+                        <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=500&q=80" alt="سماعات بلوتوث" class="w-full h-full object-cover">
+                    </div>
+                    <div class="p-4 space-y-2">
+                        <div class="flex items-center gap-1 text-amber-400 text-xs">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            <span class="text-slate-400 font-bold mr-1">(94)</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-base">سماعات إيربودز صغيرة مع علبة شحن</h3>
+                        <p class="text-xs text-slate-500 line-clamp-2">خفيفة الوزن ثابته في الأذن، جودة صوت متوازنة مع إتصال سريع بجميع الأجهزة.</p>
+                    </div>
+                </div>
+                <div class="p-4 pt-0 space-y-3">
+                    <div class="flex items-baseline justify-between border-t border-slate-100 pt-3">
+                        <span class="text-xs text-slate-400 font-bold">السعر الترويجي:</span>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-xl font-black text-brand-600">3,800 د.ج</span>
+                            <span class="text-xs text-slate-400 line-through font-semibold">5,500 د.ج</span>
+                        </div>
+                    </div>
+                    <button onclick="openCheckoutModal('سماعات إيربودز صغيرة مع علبة شحن', 3800, 'https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=500&q=80')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-cart-arrow-down"></i>
+                        <span>اطلب الآن (COD)</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs hover:shadow-md transition flex flex-col justify-between">
+                <div>
+                    <div class="relative bg-slate-100 aspect-square">
+                        <img src="https://images.unsplash.com/photo-1609592424081-35b80424578b?auto=format&fit=crop&w=500&q=80" alt="شاحن لاسلكي" class="w-full h-full object-cover">
+                        <span class="absolute top-3 right-3 bg-emerald-600 text-white font-bold text-xs px-2.5 py-1 rounded-full shadow-md">جديد</span>
+                    </div>
+                    <div class="p-4 space-y-2">
+                        <div class="flex items-center gap-1 text-amber-400 text-xs">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                            <span class="text-slate-400 font-bold mr-1">(52)</span>
+                        </div>
+                        <h3 class="font-bold text-slate-900 text-base">منصة شحن لاسلكي 3 في 1 سريعة</h3>
+                        <p class="text-xs text-slate-500 line-clamp-2">شحن الهاتف، الساعة والسماعة بنفس الوقت بتصميم أنيق وموفر للمساحة.</p>
+                    </div>
+                </div>
+                <div class="p-4 pt-0 space-y-3">
+                    <div class="flex items-baseline justify-between border-t border-slate-100 pt-3">
+                        <span class="text-xs text-slate-400 font-bold">السعر الترويجي:</span>
+                        <div class="flex items-baseline gap-2">
+                            <span class="text-xl font-black text-brand-600">4,200 د.ج</span>
+                            <span class="text-xs text-slate-400 line-through font-semibold">6,000 د.ج</span>
+                        </div>
+                    </div>
+                    <button onclick="openCheckoutModal('منصة شحن لاسلكي 3 في 1 سريعة', 4200, 'https://images.unsplash.com/photo-1609592424081-35b80424578b?auto=format&fit=crop&w=500&q=80')" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-bold py-2.5 px-4 rounded-xl text-sm transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-cart-arrow-down"></i>
+                        <span>اطلب الآن (COD)</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-10 mt-16 text-center text-xs border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 space-y-4">
+            <div class="flex justify-center items-center gap-2 text-white font-black text-lg">
+                <i class="fa-solid fa-store text-brand-600"></i>
+                <span>متجري.ستور</span>
+            </div>
+            <p class="max-w-md mx-auto text-slate-400 leading-relaxed">المتجر الرائد لخدمات البيع المباشر والدفع عند الاستلام. نلتزم بتقديم أفضل جودة مع أرقى خدمة عملاء.</p>
+            <p class="pt-4 border-t border-slate-800 text-slate-500">جميع الحقوق محفوظة © 2026</p>
+        </div>
+    </footer>
+
+    <!-- Quick Checkout Modal (COD Order Form) -->
+    <div id="checkoutModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl border border-slate-100 my-8">
+            
+            <!-- Modal Header -->
+            <div class="bg-slate-900 text-white p-4 px-6 flex justify-between items-center">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-truck-fast text-brand-500"></i>
+                    <h3 class="font-bold text-sm sm:text-base">تأكيد الطلب - الدفع عند الاستلام</h3>
+                </div>
+                <button onclick="closeCheckoutModal()" class="text-slate-400 hover:text-white text-lg">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Content Form -->
+            <form id="storeOrderForm" onsubmit="submitStoreOrder(event)" class="p-6 space-y-4 max-h-[80vh] overflow-y-auto">
+                
+                <!-- Selected Product Preview -->
+                <div class="flex items-center gap-3 bg-slate-50 p-3 rounded-2xl border border-slate-200">
+                    <img id="modalProductImg" src="" class="w-16 h-16 object-cover rounded-xl border border-slate-200">
+                    <div>
+                        <h4 id="modalProductName" class="font-bold text-slate-900 text-sm"></h4>
+                        <span id="modalProductPrice" class="text-brand-600 font-black text-base"></span>
+                    </div>
+                </div>
+
+                <!-- Inputs -->
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">الاسم الكامل *</label>
+                        <input type="text" id="custName" required placeholder="مثال: أحمد محمد" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-600">
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">رقم الهاتف *</label>
+                        <input type="tel" id="custPhone" required placeholder="06 / 07 / 05 XXXXXXXX" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-600">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">الولاية / المدينة *</label>
+                            <select id="custState" required class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-600">
+                                <option value="">اختر الولاية...</option>
+                                <option value="الجزائر">01. الجزائر العاصمة</option>
+                                <option value="وهران">02. وهران</option>
+                                <option value="قسنطينة">03. قسنطينة</option>
+                                <option value="بليدة">04. البليدة</option>
+                                <option value="سطيف">05. سطيف</option>
+                                <option value="ولاية أخرى">باقي الولايات</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-bold text-slate-700 mb-1">الكمية *</label>
+                            <select id="custQty" onchange="calculateModalTotal()" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-3 py-2.5 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-600">
+                                <option value="1">1 قطعة</option>
+                                <option value="2">2 قطع (خصم إضافة)</option>
+                                <option value="3">3 قطع</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 mb-1">العنوان أو البلدية *</label>
+                        <input type="text" id="custAddress" required placeholder="اسم البلدية أو الحي" class="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2.5 text-sm focus:bg-white focus:outline-none focus:ring-2 focus:ring-brand-600">
+                    </div>
+                </div>
+
+                <!-- Order Calculation Summary -->
+                <div class="bg-slate-100 rounded-2xl p-3 space-y-1.5 text-xs">
+                    <div class="flex justify-between text-slate-600">
+                        <span>سعر الشحن والتوصيل:</span>
+                        <span class="text-accent-600 font-bold">مجاني</span>
+                    </div>
+                    <div class="flex justify-between text-slate-900 font-bold text-sm pt-1 border-t border-slate-200">
+                        <span>المبلغ الإجمالي عند الاستلام:</span>
+                        <span id="modalTotalCalculated" class="text-brand-600 font-black text-base"></span>
+                    </div>
+                </div>
+
+                <button type="submit" class="w-full bg-brand-600 hover:bg-brand-700 text-white font-black py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2 text-base">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>تأكيد أخذ الطلب مجاناً</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Success Order Confirmation Modal -->
+    <div id="thankYouModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full text-center space-y-4 shadow-2xl border border-slate-100">
+            <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                <i class="fa-solid fa-check"></i>
+            </div>
+            <h3 class="text-2xl font-black text-slate-900">تم تسجيل طلبك بنجاح!</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed">
+                شكراً لطلبك من متجرنا. سيتصل بك فريق خدمة العملاء على الرقم المدخل خلال ساعات قليلة لتأكيد الشحن والتسليم.
+            </p>
+            <button onclick="closeThankYouModal()" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3 rounded-xl text-sm transition">
+                موافق، العودة للمتجر
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Store Functionality -->
+    <script>
+        let currentUnitPrice = 0;
+
+        function scrollToProducts() {
+            document.getElementById('products-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function openCheckoutModal(name, price, img) {
+            currentUnitPrice = price;
+            document.getElementById('modalProductName').innerText = name;
+            document.getElementById('modalProductPrice').innerText = price.toLocaleString() + ' د.ج';
+            document.getElementById('modalProductImg').src = img;
+            
+            calculateModalTotal();
+            document.getElementById('checkoutModal').classList.remove('hidden');
+        }
+
+        function closeCheckoutModal() {
+            document.getElementById('checkoutModal').classList.add('hidden');
+            document.getElementById('storeOrderForm').reset();
+        }
+
+        function calculateModalTotal() {
+            const qty = parseInt(document.getElementById('custQty').value) || 1;
+            let total = currentUnitPrice * qty;
+            
+            // Apply slight bundle discount for multiple pieces
+            if(qty === 2) total -= 500;
+            if(qty === 3) total -= 1000;
+
+            document.getElementById('modalTotalCalculated').innerText = total.toLocaleString() + ' د.ج';
+        }
+
+        function submitStoreOrder(event) {
+            event.preventDefault();
+            closeCheckoutModal();
+            document.getElementById('thankYouModal').classList.remove('hidden');
+        }
+
+        function closeThankYouModal() {
+            document.getElementById('thankYouModal').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
